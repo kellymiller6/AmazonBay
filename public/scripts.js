@@ -126,7 +126,10 @@ const createOrder = (total) => {
 
 $('.pur-btn').on('click', function () {
   let order = $(this).parents()[0].children[3].innerHTML;
-  let orderTotal = parseInt(order.match(/\d+/)[0]) * 100;
-  createOrder(orderTotal)
-  localStorage.clear()
+  console.log(order);
+  if(order.length){
+    let orderTotal = parseInt(order.match(/\d+/)[0]) * 100;
+    createOrder(orderTotal)
+    localStorage.clear()
+  }
 })

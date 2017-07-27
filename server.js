@@ -38,7 +38,7 @@ app.post('/api/v1/orders', (req,res) => {
   .then(order => {
     res.status(201).json({id: order[0]})
   })
-  .catch(error => res.status(500).json({error}))
+  .catch(error => res.status(500).json({error: 'no order to purchase'}))
 })
 
 app.listen(app.get('port'), () => {
