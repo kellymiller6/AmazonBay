@@ -25,3 +25,5 @@ app.get('/api/v1/store', (req, res) => {
 app.listen(app.get('port'), () => {
   console.log(`YOU DID IT! Server is running on localhost:${app.get('port')}`);
 });
+
+module.exports = app
