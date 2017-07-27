@@ -1,10 +1,8 @@
 $(document).ready(() => {
-  console.log(localStorage);
   receiveItems(localStorage)
   receiveOrders()
   for (let i = 0; i < localStorage.length; i++){
     const $storedItems = getStoredItems(localStorage.key(i));
-    console.log($storedItems);
     appendStoredItems($storedItems)
   }
 })
@@ -16,12 +14,11 @@ const getStoredItems = (id) => {
 const appendStoredItems = (obj) => {
   const title = obj.title;
   const price = obj.price;
-  cartAppend(title,price)
+  cartAppend(title, price)
   computeTotal()
 }
 
 const receiveItems = (obj) => {
-  console.log('ri', obj);
   fetch('/api/v1/store')
   .then(response => response.json())
   .then(items => {
@@ -52,11 +49,13 @@ const receiveOrders = () => {
 const appendOrders = (orders) => {
   $('.past-orders').empty();
   orders.map(order => {
+    let date = order.created_at.slice(0,10)
+    console.log(date);
     let displayPrice = order.total_price/100;
     $('.past-orders').append(`
       <div class='order'>
-        <h5>Date: ${order.created_at}</h5>
-        <h6>Total: ${displayPrice}</h6>
+        <p>Date: ${date}</p>
+        <p>Total: $${displayPrice}.00</p>
       </div>
     `)
   })
@@ -95,7 +94,7 @@ const appendItems = (items, obj) => {
 
 const appendToCart = (item) => {
   const title = item[0].innerHTML
-  const price = item[3].innerHTML
+  const price = parseInt(item[3].innerHTML.match(/\d+/)[0])
   const $item = {title: title, price: price}
   const key = title
   localStorage.setItem(title, JSON.stringify($item))
@@ -105,8 +104,7 @@ const appendToCart = (item) => {
 const cartAppend = (title, price) => {
   $('.cart-items').append(`
     <div class="cart-item">
-      <h5>${title}</h5>
-      <h4 class='price'>${price}</h4>
+      <h4>${title}: <span class='price'>$${price}.00</span></h4>
     </div>`)
 }
 
@@ -143,7 +141,7 @@ const createOrder = (total) => {
 }
 
 $('.pur-btn').on('click', function () {
-  let order = $(this).parents()[0].children[3].innerHTML;
+  let order = $(this).parents()[0].children[1].innerHTML;
   if(order.length){
     let orderTotal = parseInt(order.match(/\d+/)[0]) * 100;
     createOrder(orderTotal)

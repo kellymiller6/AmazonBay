@@ -50,6 +50,13 @@ aside h3 {
   text-align: center;
 }
 
+.order {
+  margin: 15px 0;
+}
+.order p{
+  margin:2px;
+}
+
 .selected {
   visibility: hidden;
 }
