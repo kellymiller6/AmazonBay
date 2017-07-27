@@ -6,6 +6,10 @@ header {
   text-align: center;
 }
 
+header p {
+  margin: 2% 20%;
+}
+
 main {
   display: flex;
   justify-content: space-between;
@@ -28,6 +32,14 @@ main {
   width: 250px;
   padding: 5px;
   margin: 5px;
+}
+
+.card h5 {
+  margin-top: 0px;
+}
+
+.card img {
+  margin-bottom: 20px;
 }
 
 .add-btn, .pur-btn {
@@ -96,9 +108,9 @@ aside h3 {
 }
 
 .show.order-hist {
-  left: 30px
+  left: 10px
 }
 
 .show.cart {
-  right: 30px;
+  right: 10px;
 }
