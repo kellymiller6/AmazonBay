@@ -154,3 +154,8 @@ $('.pur-btn').on('click', function () {
     receiveItems(localStorage)
   }
 })
+
+$('aside').on('click', function(){
+  let clicked = $(this);
+  clicked.toggleClass('show')
+})
