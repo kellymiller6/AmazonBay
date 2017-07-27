@@ -21,10 +21,10 @@ const receiveItems = () => {
       let displayPrice = item.price/100
       $('.cards').append(`
         <div class='card' data=${item.id}>
-          <h4>Title: ${item.title}</h4>
-          <h5>Description: ${item.description}</h5>
-          <img src="${item.src}" alt="${item.alt_tag}">
-          <h5>Price:$${displayPrice}</h5>
+          <h4>${item.title}</h4>
+          <h5>${item.description}</h5>
+          <img class='item-img' src="${item.src}" alt="${item.alt_tag}">
+          <h5>Price: $${displayPrice}.00</h5>
           <button type="button" name="button">Add to Cart</button>
         </div>
         `)
