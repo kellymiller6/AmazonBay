@@ -1,6 +1,5 @@
 body {
   background-color: cornflowerblue;
-  padding: 5%;
 }
 
 header {
@@ -36,7 +35,13 @@ main {
 }
 
 aside {
-  width: 150px;
+  /*width: 150px;*/
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  /*justify-content: center;*/
+  /*align-content: center;*/
+  align-items: center;
   border: 1px solid black;
   margin: 15px;
   padding: 2px;
@@ -45,6 +50,37 @@ aside h3 {
   text-align: center;
 }
 
+.order {
+  margin: 15px 0;
+}
+.order p{
+  margin:2px;
+}
+
 .selected {
   visibility: hidden;
+}
+
+.aside-contents {
+  visibility: hidden;
+}
+
+.show .aside-contents {
+  visibility: inherit;
+}
+
+.show {
+  position: absolute;
+  background: white;
+  z-index: 2;
+  width: 400px;
+  height: 100%;
+}
+
+.show.order-hist {
+  left: 30px
+}
+
+.show.cart {
+  right: 30px;
 }
