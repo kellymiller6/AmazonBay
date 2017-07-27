@@ -11,12 +11,9 @@ const getStoredItems = (id) => {
 }
 
 const appendStoredItems = (obj) => {
-  console.log(obj);
-  $('.cart-items').append(`
-    <div class="cart-item">
-      <h5>${obj.title}</h5>
-      <h4 class='price'>${obj.price}</h4>
-    </div>`)
+  const title = obj.title;
+  const price = obj.price;
+  cartAppend(title,price)
   computeTotal()
 }
 
@@ -51,12 +48,15 @@ const receiveItems = () => {
 
 
 const appendToCart = (item) => {
-  console.log(item);
   const title = item[0].innerHTML
   const price = item[3].innerHTML
   const $item = {title: title, price: price}
   const key = title
   localStorage.setItem(title, JSON.stringify($item))
+  cartAppend(title, price)
+}
+
+const cartAppend = (title, price) => {
   $('.cart-items').append(`
     <div class="cart-item">
       <h5>${title}</h5>
@@ -65,7 +65,6 @@ const appendToCart = (item) => {
 }
 
 $('.cards').on('click', '.add-btn', function () {
-  console.log($(this).parent());
   const item = $(this).parent().children()
   $(this).prop('disabled', true);
   appendToCart(item)
