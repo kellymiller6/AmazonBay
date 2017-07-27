@@ -15,7 +15,7 @@ main {
 
 .cards {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-content: space-between;
   flex-wrap: wrap;
   margin: 10px;
