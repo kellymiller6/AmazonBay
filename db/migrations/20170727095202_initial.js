@@ -6,10 +6,10 @@ exports.up = function(knex, Promise) {
       table.string('description');
       table.string('src');
       table.string('alt_tag');
-      table.integer('price')
+      table.integer('price');
       table.timestamps(true, true);
     })
-  ])
+  ]);
 };
 
 
