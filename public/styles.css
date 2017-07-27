@@ -1,0 +1,12 @@
+body {
+  background-color: cornflowerblue;
+  padding: 5%;
+}
+
+header {
+  text-align: center;
+}
+main {
+  display: flex;
+  justify-content: space-between;
+}
