@@ -44,3 +44,7 @@ aside {
 aside h3 {
   text-align: center;
 }
+
+.selected {
+  visibility: hidden;
+}

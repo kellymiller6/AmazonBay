@@ -36,14 +36,27 @@ const appendToCart = (item) => {
   console.log(item);
   const title = item[0].innerHTML
   const price = item[3].innerHTML
-  $('.cart').append(`
+  // console.log(price.match(/\d+/)[0]);
+  $('.cart-items').append(`
     <div class="cart-item">
       <h5>${title}</h5>
-      <h4>${price}</h4>
+      <h4 class='price'>${price}</h4>
     </div>`)
 }
 
-  $('.cards').on('click', '.add-btn', function () {
+$('.cards').on('click', '.add-btn', function () {
   const item = $(this).parent().children()
+  $(this).prop('disabled', true);
   appendToCart(item)
+  computeTotal()
 })
+
+const computeTotal = () => {
+  $('.cart-total').empty()
+  let totalPrice = 0;
+  $(".cart").find(".price").each(function() {
+    let itemPrice = this.innerHTML.match(/\d+/)[0]
+    totalPrice += parseInt(itemPrice);
+  });
+  $('.cart-total').append(`<div><h2>Total: $${totalPrice}.00</h2></div>`)
+}
