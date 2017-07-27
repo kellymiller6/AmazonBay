@@ -50,6 +50,7 @@ const receiveOrders = () => {
 };
 
 const appendOrders = (orders) => {
+  $('.past-orders').empty();
   orders.map(order => {
     let displayPrice = order.total_price/100;
     $('.past-orders').append(`
@@ -147,9 +148,9 @@ $('.pur-btn').on('click', function () {
     let orderTotal = parseInt(order.match(/\d+/)[0]) * 100;
     createOrder(orderTotal)
     localStorage.clear()
+    $('.cards').empty()
+    $('.cart-items').empty()
+    $('.cart-total').empty()
+    receiveItems(localStorage)
   }
-  $('.cards').empty()
-  $('.cart-items').empty()
-  $('.cart-total').empty()
-  receiveItems(localStorage)
 })
