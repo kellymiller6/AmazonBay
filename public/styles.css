@@ -6,7 +6,27 @@ body {
 header {
   text-align: center;
 }
+
 main {
   display: flex;
   justify-content: space-between;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid black;
+  width: 300px;
+  padding: 5px;
+  margin: 5px;
+}
+
+.item-img {
+  width: 200px;
 }
