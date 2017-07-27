@@ -1,12 +1,12 @@
 {
   "node": true,
-
-  "asi" : true,
+  "asi" : false,
   "curly": false,
   "esversion": 6,
-  "latedef": true,
+  "latedef": false,
   "quotmark": true,
-  "undef": true,
-  "unused": true,
-  "trailing": true
+  "undef": false,
+  "unused": false,
+  "trailing": true,
+  "expr": true
 }

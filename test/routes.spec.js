@@ -128,7 +128,7 @@ describe('POST /api/v1/orders', () => {
         response.should.have.status(500);
         response.body.should.be.a('object');
         response.body.should.have.property('error');
-        response.body.error.should.equal('no order to purchase')
+        response.body.error.should.equal('no order to purchase');
         chai.request(server)
         .get('/api/v1/orders/')
         .end((err, response) => {

@@ -4,7 +4,7 @@ exports.up = function(knex, Promise) {
   		table.dropColumn('created_at');
   		table.dropColumn('updated_at');
   	})
-  ])
+  ]);
 };
 
 exports.down = function(knex, Promise) {
@@ -12,5 +12,5 @@ exports.down = function(knex, Promise) {
   	knex.schema.table('orders', (table) => {
   		table.timestamps();
   	})
-  ])
+  ]);
 };

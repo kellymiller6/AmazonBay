@@ -1,7 +1,7 @@
 exports.seed = function(knex, Promise) {
-  return knex('store').del()
+  return knex("store").del()
     .then(function () {
-      return knex('store').insert([
+      return knex("store").insert([
         {
           "title":"Adopt a Bear",
           "description": "Your donation will help perserve the lives of these beautiful creatures.",
