@@ -1,5 +1,5 @@
 body {
-  background-color: cornflowerblue;
+  background-color: #6495ED;
 }
 
 header {
@@ -30,24 +30,39 @@ main {
   margin: 5px;
 }
 
+.add-btn, .pur-btn {
+  background: #d0dff9;
+  border: 1px solid black;
+}
+
+.add-btn:hover, .pur-btn:hover {
+  background: #edbc64;
+}
+
 .item-img {
   width: 200px;
 }
 
 aside {
-  /*width: 150px;*/
   position: relative;
   display: flex;
   flex-direction: column;
-  /*justify-content: center;*/
-  /*align-content: center;*/
   align-items: center;
   border: 1px solid black;
   margin: 15px;
   padding: 2px;
 }
+
 aside h3 {
   text-align: center;
+}
+
+.cart-total {
+  text-align: right;
+}
+
+.pur-btn {
+  margin-top: 20px;
 }
 
 .order {
@@ -63,6 +78,9 @@ aside h3 {
 
 .aside-contents {
   visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
 }
 
 .show .aside-contents {
@@ -71,7 +89,7 @@ aside h3 {
 
 .show {
   position: absolute;
-  background: white;
+  background: #d0dff9;
   z-index: 2;
   width: 400px;
   height: 100%;
