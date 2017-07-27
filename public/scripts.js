@@ -1,8 +1,10 @@
 $(document).ready(() => {
-  receiveItems()
+  console.log(localStorage);
+  receiveItems(localStorage)
   receiveOrders()
   for (let i = 0; i < localStorage.length; i++){
     const $storedItems = getStoredItems(localStorage.key(i));
+    console.log($storedItems);
     appendStoredItems($storedItems)
   }
 })
@@ -18,12 +20,13 @@ const appendStoredItems = (obj) => {
   computeTotal()
 }
 
-const receiveItems = () => {
+const receiveItems = (obj) => {
+  console.log('ri', obj);
   fetch('/api/v1/store')
   .then(response => response.json())
   .then(items => {
     if(items.length){
-      appendItems(items);
+      appendItems(items, obj);
     }else{
       $('.cards').append(`
         <p>No animals up for adoption at this time, please try again soon!</p>
@@ -58,20 +61,35 @@ const appendOrders = (orders) => {
   })
 }
 
-const appendItems = (items) => {
+const appendItems = (items, obj) => {
+  let keys = Object.keys(obj)
   items.map(item => {
     let displayPrice = item.price/100;
-    $('.cards').append(`
-      <div class='card' data=${item.id}>
-        <h4>${item.title}</h4>
-        <h5>${item.description}</h5>
-        <img class='item-img' src='${item.src}' alt='${item.alt_tag}'>
-        <h5>Price: $${displayPrice}.00</h5>
-        <button class='add-btn'>Add to Cart</button>
-      </div>
+    if(!keys.length || !keys.includes(item.title)){
+      $('.cards').append(`
+        <div class='card' data=${item.id}>
+          <h4>${item.title}</h4>
+          <h5>${item.description}</h5>
+          <img class='item-img' src='${item.src}' alt='${item.alt_tag}'>
+          <h5>Price: $${displayPrice}.00</h5>
+          <button class='add-btn'>Add to Cart</button>
+        </div>
       `)
+    }
+    if(keys.includes(item.title)){
+      $('.cards').append(`
+        <div class='card' data=${item.id}>
+          <h4>${item.title}</h4>
+          <h5>${item.description}</h5>
+          <img class='item-img' src='${item.src}' alt='${item.alt_tag}'>
+          <h5>Price: $${displayPrice}.00</h5>
+          <button class='add-btn selected'>Add to Cart</button>
+        </div>
+      `)
+    }
   })
 }
+
 
 
 const appendToCart = (item) => {
@@ -93,7 +111,7 @@ const cartAppend = (title, price) => {
 
 $('.cards').on('click', '.add-btn', function () {
   const item = $(this).parent().children()
-  $(this).prop('disabled', true);
+  $(this).addClass('selected');
   appendToCart(item)
   computeTotal()
 })
@@ -106,7 +124,6 @@ const computeTotal = () => {
     totalPrice += parseInt(itemPrice);
   });
   $('.cart-total').append(`
-
       <p>Total: $${totalPrice}.00</p>
     `)
 }
@@ -126,7 +143,6 @@ const createOrder = (total) => {
 
 $('.pur-btn').on('click', function () {
   let order = $(this).parents()[0].children[3].innerHTML;
-  console.log(order);
   if(order.length){
     let orderTotal = parseInt(order.match(/\d+/)[0]) * 100;
     createOrder(orderTotal)
