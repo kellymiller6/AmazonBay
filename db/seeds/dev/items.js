@@ -5,7 +5,7 @@ exports.seed = function(knex, Promise) {
         {
           "title":"Adopt a Bear",
           "description": "Your donation will help perserve the lives of these beautiful creatures.",
-          "src": "https://placebear.com/g/200/200",
+          "src": "http://bit.ly/2uGp2sU",
           "alt_tag":"bear image",
           "price":"100000"
         },
@@ -13,7 +13,7 @@ exports.seed = function(knex, Promise) {
           "title":"Adopt an Orangutan",
           "description": "Your donation will help perserve the lives of these beautiful creatures.",
           "src": "http://bit.ly/2uBVGO2",
-          "alt_tag":"bear image",
+          "alt_tag":"Orangutan image",
           "price":"80000"
         },
         {
@@ -54,7 +54,7 @@ exports.seed = function(knex, Promise) {
         {
           "title":"Adopt a Bee",
           "description": "Your donation will help perserve the lives of these beautiful creatures.",
-          "src": "http://bit.ly/2vMHTTa",
+          "src": "http://bit.ly/2v2XBvO",
           "alt_tag":"bee image",
           "price":"500"
         }
