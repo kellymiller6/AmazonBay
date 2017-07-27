@@ -148,4 +148,8 @@ $('.pur-btn').on('click', function () {
     createOrder(orderTotal)
     localStorage.clear()
   }
+  $('.cards').empty()
+  $('.cart-items').empty()
+  $('.cart-total').empty()
+  receiveItems(localStorage)
 })
