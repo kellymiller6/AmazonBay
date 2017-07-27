@@ -1,6 +1,21 @@
 $(document).ready(() => {
   receiveItems()
+  for (let i = 0; i < localStorage.length; i++){
+    const $storedItems = getStoredItems(localStorage.key(i));
+    appendStoredItems($storedItems)
+  }
 })
+
+const getStoredItems = (id) => {
+  return JSON.parse(localStorage.getItem(id));
+}
+
+const appendStoredItems = (obj) => {
+  const title = obj.title;
+  const price = obj.price;
+  cartAppend(title,price)
+  computeTotal()
+}
 
 const receiveItems = () => {
   fetch('/api/v1/store')
@@ -23,10 +38,45 @@ const receiveItems = () => {
         <div class='card' data=${item.id}>
           <h4>${item.title}</h4>
           <h5>${item.description}</h5>
-          <img class='item-img' src="${item.src}" alt="${item.alt_tag}">
+          <img class='item-img' src='${item.src}' alt='${item.alt_tag}'>
           <h5>Price: $${displayPrice}.00</h5>
-          <button type="button" name="button">Add to Cart</button>
+          <button class='add-btn'>Add to Cart</button>
         </div>
         `)
     })
   }
+
+
+const appendToCart = (item) => {
+  const title = item[0].innerHTML
+  const price = item[3].innerHTML
+  const $item = {title: title, price: price}
+  const key = title
+  localStorage.setItem(title, JSON.stringify($item))
+  cartAppend(title, price)
+}
+
+const cartAppend = (title, price) => {
+  $('.cart-items').append(`
+    <div class="cart-item">
+      <h5>${title}</h5>
+      <h4 class='price'>${price}</h4>
+    </div>`)
+}
+
+$('.cards').on('click', '.add-btn', function () {
+  const item = $(this).parent().children()
+  $(this).prop('disabled', true);
+  appendToCart(item)
+  computeTotal()
+})
+
+const computeTotal = () => {
+  $('.cart-total').empty()
+  let totalPrice = 0;
+  $(".cart").find(".price").each(function() {
+    let itemPrice = this.innerHTML.match(/\d+/)[0]
+    totalPrice += parseInt(itemPrice);
+  });
+  $('.cart-total').append(`<div><h2>Total: $${totalPrice}.00</h2></div>`)
+}
