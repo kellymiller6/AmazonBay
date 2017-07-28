@@ -89,8 +89,6 @@ const appendItems = (items, obj) => {
   });
 };
 
-
-
 const appendToCart = (item) => {
   const title = item[0].innerHTML;
   const price = parseInt(item[3].innerHTML.match(/\d+/)[0]);
@@ -137,7 +135,6 @@ const createOrder = (total) => {
     })
     .catch(error => console.log(error, 'error receiving orders'));
 };
-
 
 $('.pur-btn').on('click', function () {
   let order = $(this).parents()[0].children[1].innerHTML;
