@@ -50,7 +50,6 @@ const appendOrders = (orders) => {
   $('.past-orders').empty();
   orders.map(order => {
     let date = order.created_at.slice(0,10);
-    console.log(date);
     let displayPrice = order.total_price/100;
     $('.past-orders').append(`
       <div class='order'>
@@ -128,17 +127,17 @@ const computeTotal = () => {
 };
 
 const createOrder = (total) => {
-  $.ajax({
-    url: '/api/v1/orders',
-    type: 'POST',
-    contentType: 'application/json',
-    data: JSON.stringify({total_price: total}),
-    dataType: 'json',
-    success: (response) => {
+  const header = { 'Content-Type': 'application/json' };
+  const body = { 'total_price': `${total}` };
+
+  return fetch('/api/v1/orders', {method: 'POST', headers: header, body: JSON.stringify(body)})
+    .then(response => response.json())
+    .then(response => {
       receiveOrders(response);
-    }
-  });
+    })
+    .catch(error => console.log(error, 'error receiving orders'));
 };
+
 
 $('.pur-btn').on('click', function () {
   let order = $(this).parents()[0].children[1].innerHTML;
