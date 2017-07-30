@@ -115,3 +115,24 @@ aside h3 {
 .show.cart {
   right: 10px;
 }
+
+@media screen and (max-width: 420px) {
+  main {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  aside {
+    height: 100px;
+    width: 80%;
+  }
+
+  .show {
+    position: static;
+    top: 80%;
+    width: 90%;
+    height: 100%;
+  }
+
+
+}
