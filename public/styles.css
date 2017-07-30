@@ -130,7 +130,7 @@ aside h3 {
     position: static;
     top: 80%;
     width: 90%;
-    height: 100%;
+    height: inherit;
   }
 
 
